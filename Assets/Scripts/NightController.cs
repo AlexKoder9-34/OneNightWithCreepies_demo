@@ -37,7 +37,7 @@ public class NightController : MonoBehaviour
     
     private void ChangeHourAmount()
     {
-        if (hourNumber >= hoursList.Count - 1)
+        if (hourNumber >= hoursList.Count)
         {
             GameEvents.OnNightEnd?.Invoke();
             return;
