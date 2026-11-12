@@ -9,6 +9,7 @@ public class NightController : MonoBehaviour
     [SerializeField] private int hourValue;
     [SerializeField] private int hourNumber;
     [SerializeField] private int hourLength = 60;
+    [SerializeField] private int endHour;
     
     [SerializeField] private List<int> hoursList;
     
@@ -23,7 +24,7 @@ public class NightController : MonoBehaviour
 
     private void Awake()
     {
-        hourNumber = hoursList[0];
+        hourValue = hoursList[0];
     }
 
     IEnumerator HourCoroutine()
@@ -42,20 +43,18 @@ public class NightController : MonoBehaviour
     
     private void ChangeHourAmount()
     {
-        if (hourNumber >= hoursList.Count)
-        {
-            GameEvents.OnNightEnd?.Invoke();
-            return;
-        }
-        else if (hourNumber >= hoursList.Count - 1)
-        {
-            return;
-        }
-        
         hourNumber++;
         hourValue = hoursList[hourNumber];
         
         OnHourChanged?.Invoke(hourValue);
+        
+        if (hourNumber >= hoursList.Count - 1)
+            return;
+        
+        if (hourValue == endHour)
+        {
+            GameEvents.OnNightEnd?.Invoke();
+        }
     }
     
     private void OnEnable()
