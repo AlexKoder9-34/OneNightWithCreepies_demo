@@ -43,6 +43,9 @@ public class NightController : MonoBehaviour
     
     private void ChangeHourAmount()
     {
+        if (hourNumber >= hoursList.Count - 1)
+            return;
+        
         hourNumber++;
         hourValue = hoursList[hourNumber];
         
