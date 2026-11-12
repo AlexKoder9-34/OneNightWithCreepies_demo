@@ -21,6 +21,11 @@ public class NightController : MonoBehaviour
         _nightCoroutine = StartCoroutine(HourCoroutine());
     }
 
+    private void Awake()
+    {
+        hourNumber = hoursList[0];
+    }
+
     IEnumerator HourCoroutine()
     {
         while (Time.timeScale != 0)
