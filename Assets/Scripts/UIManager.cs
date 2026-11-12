@@ -120,7 +120,6 @@ public class UIManager : MonoBehaviour
         NightController.OnHourChanged += ChangeHourAmount;
         
         EnergyController.OnEnergyChanged += ChangeEnergyAmount;
-        EnergyController.OnEnergyZeroed += HideCameraUI;
         EnergyController.OnEnergyZeroed += ShowLowedEnergyUI;
         
         Monitor.OnCameraOpen += ShowMonitorUI;
@@ -140,7 +139,6 @@ public class UIManager : MonoBehaviour
         NightController.OnHourChanged -= ChangeHourAmount;
         
         EnergyController.OnEnergyChanged -= ChangeEnergyAmount;
-        EnergyController.OnEnergyZeroed -= HideCameraUI;
         EnergyController.OnEnergyZeroed -= ShowLowedEnergyUI;
         
         Monitor.OnCameraOpen -= ShowMonitorUI;
