@@ -4,9 +4,14 @@ using UnityEngine;
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovement : MonoBehaviour, IControllable
     {
+        [SerializeField] private float verticalVelocity;
+        [SerializeField] private float gravityForce;
+        [SerializeField] private float moveSpeed = 30f;
+        
         private CharacterController _controller;
         private Vector3 _moveDirection;
-        private float _moveSpeed = 30f;
+        
+        
         private void Awake()
         {
             _controller  = GetComponent<CharacterController>();
@@ -14,6 +19,7 @@ using UnityEngine;
 
         void Update()
         {
+            DoGravity();
             MovePlayer();
         }
         
@@ -22,8 +28,23 @@ using UnityEngine;
             _moveDirection = direction;
         }
 
-        public void MovePlayer()
+        private void MovePlayer()
         {
-           _controller.Move(_moveDirection * Time.deltaTime * _moveSpeed);
+            Vector3 movement = _moveDirection * moveSpeed;
+
+            movement.y = verticalVelocity;
+            
+           _controller.Move(movement * Time.deltaTime);
         }
+        
+        private void DoGravity()
+        {
+            if (_controller.isGrounded && verticalVelocity < 0)
+            {
+                verticalVelocity = -5;
+            }
+
+            verticalVelocity += gravityForce * Time.deltaTime;
+        }
+        
     }
