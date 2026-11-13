@@ -15,3 +15,21 @@ Bug Fixes:
 
 New Features:
 - New hiding spot: Players can now hide under tables as well as under beds.
+
+Five nights with Creepies demo patch 0.1.3:
+
+Исправленные баги:
+- исправлена ошибка позднего окончания ночи при которой ночь заканчивалась на час позже.
+- исправлена система отключения электричества.
+- исправлена ошибка после отключения электричества.
+
+Нововведения:
+- добавлена физика падения игроку
+
+Bug Fixes:
+- Fixed an issue where the night ended one hour later than intended.
+- Fixed the power outage system.
+- Fixed an issue that occurred after a power outage.
+
+New Features:
+- Added player falling physics.
