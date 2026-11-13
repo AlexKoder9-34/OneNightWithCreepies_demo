@@ -9,8 +9,9 @@ public class Door : MonoBehaviour, IInteractable
     
     private Animator _animator;
     private AudioSource _doorAudio;
+    private bool _isAnimating;
     
-    private bool _isOpen = false;
+    private bool _isOpen;
 
     private void Awake()
     {
@@ -20,6 +21,11 @@ public class Door : MonoBehaviour, IInteractable
 
     public void Interact(GameObject interactor)
     {
+        if(_isAnimating)
+            return;
+
+        _isAnimating = true;
+        
         if (_isOpen == false)
             OpenDoor();
         else
@@ -43,6 +49,16 @@ public class Door : MonoBehaviour, IInteractable
     private void PlayDoorAudio()
     {
         _doorAudio.PlayOneShot(doorSound);
+    }
+
+    public void OnDoorOpened()
+    {
+        _isAnimating = false;
+    }
+
+    public void OnDoorClosed()
+    {
+        _isAnimating = false;
     }
 }
     
